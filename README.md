@@ -205,6 +205,6 @@ Test if you can access your contract
 ```
 
 References:
-https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options
 
-https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum
+- https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options
+- https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum
