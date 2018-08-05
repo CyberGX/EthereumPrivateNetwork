@@ -68,9 +68,9 @@ $ geth init genesis.json
 ```
 Following are default directory for ethereum data storage
 
-Mac: ~/Library/Ethereum
-Linux: ~/.ethereum
-Windows: %APPDATA%\Ethereum
+- Mac: ~/Library/Ethereum
+- Linux: ~/.ethereum
+- Windows: %APPDATA%\Ethereum
 
 **Step 5 :** Create password.sec file in any directory you want. open password.sec file in your favourite text editor and type password which you like.
 
