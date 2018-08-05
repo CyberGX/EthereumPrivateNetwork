@@ -193,7 +193,7 @@ If everything works well, you will see something like this.
 Test if you have successfully deployed the smart contract by initializing truffle console in a new terminal tab
 
 ```bash
-truffle console
+$ truffle console
 ```
 
 Test if you can access your contract
