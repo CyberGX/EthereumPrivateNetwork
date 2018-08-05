@@ -27,6 +27,7 @@ To verify proper installation, execute following command on terminal
 ```bash 
 $ geth version
 ```
+
 **Step 3 :** create genesis.json file and copy following json block
 
 ```json
@@ -106,6 +107,102 @@ rpcapi value API’s offered over the HTTP-RPC interface
 $ $./startGeth.sh
 ```
 Congratulations.. Your private Ethereum network is up and running now.
+
+Open a new tab in terminal and connect to the private blockchain so that your can create a account and mine some ether before deploying the smart contract
+
+```bash
+$ geth attach http://127.0.0.1:8545
+```
+
+Create and unlock you account
+
+```bash
+> personal.newAccount('password')
+> personal.unlockAccount(web3.eth.coinbase, "password", 15000)
+```
+Start mining Ether
+
+```bash
+> miner.start()
+```
+
+Check how many Ether you have mined
+```javascript
+web3.fromWei(eth.getBalance(eth.coinbase), "ether")
+```
+
+To stop mining
+```javascript
+miner.stop();
+```
+
+## Creating a smart contract and deploying it on private ethereum blockchain
+
+Navigate to the same directory of the project and initialize truffle
+```bash
+truffle init
+```
+
+Create a new file called Hello.sol in contracts folder and paste in the following code
+
+```javascript
+pragma solidity ^0.4.15;
+contract Hello {
+    string public message; 
+    function Hello() {
+        message = "Hello, World"; 
+    }
+}
+```
+Create a new file called 2_deploy_contracts.js in migartion folder and paste in the following code
+```javascript
+var Hello = artifacts.require("./Hello.sol");
+module.exports = function(deployer) {
+    deployer.deploy(Hello);
+};
+```
+Now to to your truffle.js and replace the current code with the following code
+```javascript
+module.exports = {
+    rpc: {
+        host:"localhost",
+        port:8545
+    },
+    networks: {
+        development: {
+            host: "localhost",
+            port: 8545, // port where your blockchain is running 
+            network_id: "*",
+            from: "f6a9eb4b8dd10ce0cd8fb8d8a54eb03d57d9c578",
+            gas: 18000000
+        }
+    }
+};
+```
+The from hex code which represent your account comes following line on code in Geth Javascript Console
+```bash
+> personal.listAccounts[0]
+```
+Save all your changes and run
+
+```bash
+$ truffle compile
+$ truffle migrate
+```
+If everything works well, you will see something like this.
+Test if you have successfully deployed the smart contract by initializing truffle console in a new terminal tab
+
+```bash
+truffle console
+```
+
+Test if you can access your contract
+
+```bash
+> var app
+> Hello.deployed().then(function(instance) { app = instance; })
+> app.message.call()
+```
 
 References:
 https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options
