@@ -171,7 +171,7 @@ module.exports = function(deployer) {
     deployer.deploy(Hello);
 };
 ```
-Now to to your truffle.js and replace the current code with the following code
+Now go to your truffle.js and replace the current code with the following code
 ```javascript
 module.exports = {
     rpc: {
