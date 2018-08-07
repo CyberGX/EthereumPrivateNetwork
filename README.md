@@ -1,6 +1,8 @@
 # Setup Ethereum Private Network
 
-Ethereum is popular framework for blockchain and cryptocurrency. For this article I assume you have basic information about BlockChain technology and Ethereum. In this article I will explain how to setup your private Ethereum network
+Ethereum is popular framework for blockchain and cryptocurrency, For this article I assume you have basic information about BlockChain technology and Ethereum.
+
+In this article I will explain how to setup your private Ethereum network.
 
 ### Prerequisite
 - Operating System Ubuntu 17.2
@@ -104,7 +106,7 @@ rpcapi value API’s offered over the HTTP-RPC interface
 **Step 8 :** execute startGeth.sh file
 
 ```bash
-$ $./startGeth.sh
+$ ./startGeth.sh
 ```
 Congratulations.. Your private Ethereum network is up and running now.
 
@@ -118,29 +120,37 @@ Create and unlock you account
 
 ```bash
 > personal.newAccount('password')
-> personal.unlockAccount(web3.eth.coinbase, "password", 15000)
+> personal.unlockAccount(web3.eth.coinbase, "password", 15000) # "0xfe8b247113e91f76a6563f668c82e5c0d0d78d12"
 ```
+
 Start mining Ether
 
 ```bash
-> miner.start()
+> miner.start() # null
 ```
 
 Check how many Ether you have mined
 ```javascript
-web3.fromWei(eth.getBalance(eth.coinbase), "ether")
+> web3.fromWei(eth.getBalance(eth.coinbase), "ether") // 670
 ```
 
 To stop mining
 ```javascript
-miner.stop();
+> miner.stop() // true
 ```
 
 ## Creating a smart contract and deploying it on private ethereum blockchain
 
-Navigate to the same directory of the project and initialize truffle
+you must install truffle from node package manager :
+
 ```bash
-truffle init
+$ npm install -g truffle
+```
+
+Navigate to the same directory of the project and initialize truffle
+
+```bash
+$ truffle init
 ```
 
 Create a new file called Hello.sol in contracts folder and paste in the following code
